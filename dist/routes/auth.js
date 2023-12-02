@@ -6,6 +6,7 @@ const express_validator_1 = require("express-validator");
 const validations_1 = require("../helpers/validations");
 const collectErrors_1 = require("../middlewares/collectErrors");
 const router = (0, express_1.Router)();
+router.get("/", () => { console.log("hola"); });
 router.post("/register", [
     (0, express_validator_1.check)("name", "El nombre es obligatorio").not().isEmpty(),
     (0, express_validator_1.check)("surname", "El apellido es obligatorio").not().isEmpty(),

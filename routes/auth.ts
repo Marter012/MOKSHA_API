@@ -10,6 +10,8 @@ import { collectErrors } from "../middlewares/collectErrors";
 
 const router = Router();
 
+router.get("/",()=>{console.log("hola")})
+
 router.post(
   "/register",
   [
