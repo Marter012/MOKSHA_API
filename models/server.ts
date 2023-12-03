@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import { connectDB } from "../dataBase/DBConfig";
 import authRouter from "../routes/auth";
+import cors from "cors"
 
 export class Server {
   app: Express;
@@ -23,6 +24,7 @@ export class Server {
 
   middlewares() {
     this.app.use(express.json());
+    this.app.use(cors());
   }
 
   routes() : void {
