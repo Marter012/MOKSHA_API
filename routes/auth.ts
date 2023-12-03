@@ -10,7 +10,9 @@ import { collectErrors } from "../middlewares/collectErrors";
 
 const router = Router();
 
-router.get("/",()=>{console.log("hola")})
+router.get("/", () => {
+  return "<h1>Hola<h1>";
+});
 
 router.post(
   "/register",
@@ -42,6 +44,15 @@ router.post(
   loginController
 );
 
-router.patch("/verify",[],verifyUser)
+router.patch(
+  "/verify",
+  [
+    check("email", "El mail es obligatorio").not().isEmpty(),
+    check("email", "El mail no es valido").isEmail(),
+    check("code").not().isEmpty(),
+    collectErrors,
+  ],
+  verifyUser
+);
 
 export default router;

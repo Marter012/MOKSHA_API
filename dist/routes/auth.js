@@ -6,7 +6,9 @@ const express_validator_1 = require("express-validator");
 const validations_1 = require("../helpers/validations");
 const collectErrors_1 = require("../middlewares/collectErrors");
 const router = (0, express_1.Router)();
-router.get("/", () => { console.log("hola"); });
+router.get("/", () => {
+    return "<h1>Hola<h1>";
+});
 router.post("/register", [
     (0, express_validator_1.check)("name", "El nombre es obligatorio").not().isEmpty(),
     (0, express_validator_1.check)("surname", "El apellido es obligatorio").not().isEmpty(),
@@ -28,5 +30,10 @@ router.post("/login", [
     }),
     collectErrors_1.collectErrors,
 ], authControllers_1.loginController);
-router.patch("/verify", [], authControllers_1.verifyUser);
+router.patch("/verify", [
+    (0, express_validator_1.check)("email", "El mail es obligatorio").not().isEmpty(),
+    (0, express_validator_1.check)("email", "El mail no es valido").isEmail(),
+    (0, express_validator_1.check)("code").not().isEmpty(),
+    collectErrors_1.collectErrors,
+], authControllers_1.verifyUser);
 exports.default = router;
