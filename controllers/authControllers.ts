@@ -44,7 +44,7 @@ export const loginController = async (req: Request, res: Response) => {
 
     if (!validatePassword) {
       res.status(400).json({
-        msg: "hola",
+        msg: "La contraseña es incorrecta.",
       });
       return;
     }
