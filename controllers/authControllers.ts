@@ -42,12 +42,12 @@ export const loginController = async (req: Request, res: Response) => {
 
     const validatePassword = bcryptjs.compareSync(password, user.password);
 
-    // if (!validatePassword) {
-    //   res.status(400).json({
-    //     msg: "La contraseña es incorrecta.",
-    //   });
-    //   return;
-    // }
+    if (!validatePassword) {
+      res.status(400).json({
+        msg: "hola",
+      });
+      return;
+    }
 
     const token = await generarJWT(user.id);
 
