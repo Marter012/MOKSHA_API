@@ -9,6 +9,7 @@ export const collectErrors = (
   const errors: Result<ValidationError> = validationResult(req);
 
   if (!errors.isEmpty()) {
+    console.log("hola", errors)
     res.status(400).json({
       errors,
     });
